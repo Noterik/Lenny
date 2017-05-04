@@ -433,6 +433,17 @@ public class LennyResource extends ServerResource {
 	private Pair<Status, String> getTicketHasAccess(String uri, String fsxml) {
 		Pair<Status, String> r;
 		
+		int position = uri.indexOf(TICKET_ACCESS_URI)+TICKET_ACCESS_URI.length()+1;
+		
+		// ticket uri, so not allowed
+		if (position >= uri.length()) {
+		    StringBuilder response = new StringBuilder("<?xml version='1.0' encoding='UTF-8'?><fsxml><properties>");
+		    response.append("<allowed>false</allowed>");
+		    response.append("</properties></fsxml>");
+		    r = new Pair<Status, String>(Status.SUCCESS_OK, response.toString());
+		    return r;
+		}
+		
 		String ticket = uri.substring(uri.indexOf(TICKET_ACCESS_URI)+TICKET_ACCESS_URI.length()+1);
 		
 		String mediaUri = "";
