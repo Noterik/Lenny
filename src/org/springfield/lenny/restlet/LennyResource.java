@@ -319,11 +319,18 @@ public class LennyResource extends ServerResource {
 					
 					if (doc != null) {
 						List<Node> videos = doc.selectNodes("//videoplaylist/video/@referid");
+						List<Node> audios = doc.selectNodes("//videoplaylist/audio/@referid");
 						
-						tmpArray = new String[videos.size()];
+						tmpArray = new String[videos.size()+audios.size()];
 						int j = 0;
 						
 						for (Iterator<Node> i = videos.iterator(); i.hasNext(); ) {
+							tmpArray[j] = i.next().getText();
+							logger.debug("Adding "+tmpArray[j]);
+							j++;
+						}
+			
+						for (Iterator<Node> i = audios.iterator(); i.hasNext(); ) {
 							tmpArray[j] = i.next().getText();
 							logger.debug("Adding "+tmpArray[j]);
 							j++;
