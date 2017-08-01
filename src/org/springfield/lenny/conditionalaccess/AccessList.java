@@ -17,7 +17,7 @@ public class AccessList extends ConcurrentHashMap<String, AccessListEntry> {
 	
 	public static AccessList instance;
 	
-	public static AccessList getInstance() {
+	public static final AccessList getInstance() {
 		if (instance == null) {
 			instance = new AccessList();
 		}

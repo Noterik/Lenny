@@ -41,7 +41,6 @@ import org.restlet.Response;
 import org.restlet.data.MediaType;
 import org.restlet.data.Status;
 import org.restlet.representation.Representation;
-import org.restlet.representation.StringRepresentation;
 import org.restlet.representation.Variant;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
@@ -50,7 +49,6 @@ import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 import org.springfield.lenny.conditionalaccess.AccessList;
 import org.springfield.lenny.conditionalaccess.AccessListEntry;
-import org.springfield.lenny.homer.SmithersProperties;
 import org.springfield.lenny.restlet.util.Pair;
 import org.springfield.mojo.interfaces.ServiceInterface;
 import org.springfield.mojo.interfaces.ServiceManager;
@@ -64,13 +62,13 @@ import org.springfield.mojo.interfaces.ServiceManager;
  * 
  */
 public class LennyResource extends ServerResource {
-	private static Logger logger = Logger.getLogger(LennyResource.class);
+	private final static Logger logger = Logger.getLogger(LennyResource.class);
 	
 	private static final String TICKET_URI = "/acl/ticket";
 	private static final String TICKET_ACCESS_URI = "/acl/ticketaccess";
 	private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
-	private AccessList accesslist;
+	private static AccessList accesslist;
 	private List<InetAddress> whitelist = new ArrayList<InetAddress>();
 	
 	public LennyResource() {
@@ -80,10 +78,10 @@ public class LennyResource extends ServerResource {
 	}
 	
 	public void doInit(Context context, Request request, Response response) {
-        super.init(context, request, response);
+	    super.init(context, request, response);
         
-        // add representational variants allowed
-        getVariants().add(new Variant(MediaType.TEXT_XML));
+	    // add representational variants allowed
+	    getVariants().add(new Variant(MediaType.TEXT_XML));
 	}
 	
 	// allowed actions: POST, PUT, GET, DELETE 
@@ -348,7 +346,7 @@ public class LennyResource extends ServerResource {
 			return r;
 		}	
 		
-		AccessListEntry entry = new AccessListEntry(uriArray, ip, role, expiry, maxRequests);
+		AccessListEntry entry = new AccessListEntry(uriArray, ip, role, expiry, maxRequests); 
 		accesslist.put(ticket, entry);
 		logger.info("Added ticket ["+ticket+", "+uriArray.toString()+", "+ip+", "+role+", "+expiry+", "+maxRequests+"]");
 		

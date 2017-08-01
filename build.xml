@@ -73,6 +73,8 @@
 				<exclude name="jaxen-1.1.1.jar"/>
 				<exclude name="activation-1.1.jar"/>
 				<exclude name="javax.mail.jar"/>
+				<exclude name="org.restlet.ext.html.jar"/>
+				<exclude name="org.restlet.jar"/>
 			</lib>
 			<lib dir="${build.dir}" />
 			<fileset dir="${web.dir}">

@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
  */
 public class LennyServer {
 	/** The LennyServer's log4j Logger */
-	private static Logger LOG = Logger.getLogger(LennyServer.class);
+	private final static Logger LOG = Logger.getLogger(LennyServer.class);
 
 	/** base uri of the file system */
 	private static String DOMAIN_URI = "/domain";	
