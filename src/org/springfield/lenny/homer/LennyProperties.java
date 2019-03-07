@@ -26,14 +26,10 @@ public class LennyProperties {
 	private String status;
 	private String defaultloglevel;
 	private String preferedsmithers;
-	private String imagepath;
+	private String apikey;
 	
 	public void setIpNumber(String i) {
 		ipnumber = i;
-	}
-	
-	public void setImagePath(String p) {
-		imagepath = p;
 	}
 	
 	public void setName(String n) {
@@ -52,6 +48,10 @@ public class LennyProperties {
 		status = s;
 	}
 	
+	public void setApiKey(String k) {
+		apikey = k;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -59,11 +59,6 @@ public class LennyProperties {
 	public String getIpNumber() {
 		return ipnumber;
 	}
-	
-	public String getImagePath() {
-		return imagepath;
-	}
-	
 	
 	public String getStatus() {
 		return status;
@@ -79,4 +74,7 @@ public class LennyProperties {
 		return preferedsmithers;
 	}
 	
+	public String getApiKey() {
+		return apikey;
+	}
 }

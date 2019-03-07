@@ -149,6 +149,10 @@ public class LazyHomer implements MargeObserver {
 		}
 	}
 	
+	public static LennyProperties getMyLennyProperties() {
+		return lennies.get(myip);
+	}
+	
 	private Boolean checkKnown() {
 		String xml = "<fsxml><properties><depth>1</depth></properties></fsxml>";
 		ServiceInterface smithers = ServiceManager.getService("smithers");
@@ -180,6 +184,8 @@ public class LazyHomer implements MargeObserver {
 					mp.setStatus(status);					
 					mp.setDefaultLogLevel(child.selectSingleNode("properties/defaultloglevel").getText());
 					mp.setPreferedSmithers(child.selectSingleNode("properties/preferedsmithers").getText());
+					String apiKey = child.selectSingleNode("properties/apikey") == null ? "" : child.selectSingleNode("properties/apikey").getText();
+					mp.setApiKey(apiKey);
 					
 					if (ipnumber.equals(myip)) {
 						foundmynode = true;
@@ -214,6 +220,7 @@ public class LazyHomer implements MargeObserver {
 		        	newbody+="<activesmithers>"+selectedsmithers.getIpNumber()+"</activesmithers>";
 		        	newbody+="<lastseen>"+new Date().getTime()+"</lastseen>";
 		        	newbody+="<preferedsmithers>"+myip+"</preferedsmithers>";
+		        	newbody+="<apikey/>";
 		        	newbody+="<defaultloglevel>info</defaultloglevel>";
 		       
 		        	newbody+="</properties></nodes></fsxml>";	
